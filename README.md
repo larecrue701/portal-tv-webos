@@ -1,10 +1,25 @@
 # Portal TV for webOS
 
-An independent TV player for **your own Stalker portal and M3U sources**, with a French interface designed for the LG remote. No channels, subscription, portal credentials or playlists are included.
+An independent TV player for **your own Stalker portal and M3U sources**, with French and English editions designed for the LG remote. No channels, subscription, portal credentials or playlists are included.
 
 **Version 0.3.5 — early release.** Tested on webOS 25 with Node.js 16.20.2. Other TVs and provider implementations need testing. This is not an official LG, Infomir or StbEmu application.
 
-Download the [TV installation package](org.portaltv.player_0.3.5_all.ipk) or the [complete source archive](portal-tv-webos-0.3.5-source.zip). Extract the source archive before running the build commands below.
+Download the [French TV package](org.portaltv.player_0.3.5_all.ipk), [English TV package](portal-tv-0.3.5-english.ipk), or [complete source archive](portal-tv-webos-0.3.5-source.zip). Extract the source archive before running the build commands below.
+
+## English edition
+
+Both packages use the same app ID and version: installing one replaces the other. Reinstall the French package to return to French. Do not uninstall first if you want to preserve sources. Provider titles and descriptions remain in their original language.
+
+The English edition passed browser navigation and simulated playback tests; it has not yet been verified on a real TV. After extracting the source archive, run:
+
+```sh
+npm ci
+python3 build-english.py
+node dist/english/test-ui.mjs
+npx ares-package dist/english/app dist/english/service --outdir dist/english
+```
+
+Python 3 is required for the English build. Translation pairs are in `locales/en.txt` inside the source archive. Verify downloads against [SHA256SUMS](SHA256SUMS).
 
 ## Features
 
@@ -92,7 +107,7 @@ Keep the previous IPK before updating. To roll back, reinstall that IPK over the
 
 ## License and credits
 
-MIT; see [LICENSE](LICENSE). The bundled QR generator is copyright Kazuhiko Arase and retains its [MIT notice](app/QR-LICENSE.txt). Application and protocol implementation are independent; no code from an unlicensed reference project is included.
+MIT; see [LICENSE](LICENSE). The bundled QR generator is copyright Kazuhiko Arase and retains its MIT notice (`app/QR-LICENSE.txt` in the source archive). Application and protocol implementation are independent; no code from an unlicensed reference project is included.
 
 ### Build-tool dependency note
 
