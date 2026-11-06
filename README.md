@@ -2,9 +2,17 @@
 
 An independent TV player for **your own Stalker portal and M3U sources**, with French and English editions designed for the LG remote. No channels, subscription, portal credentials or playlists are included.
 
-**Version 0.3.5 — early release.** Tested on webOS 25 with Node.js 16.20.2. Other TVs and provider implementations need testing. This is not an official LG, Infomir or StbEmu application.
+**Version 0.3.6 — early release.** The previous version was tested on webOS 25 with Node.js 16.20.2; this update has passed simulated browser and service tests, but has not yet been verified on a real TV. Other TVs and provider implementations need testing. This is not an official LG, Infomir or StbEmu application.
 
-Download the [French TV package](org.portaltv.player_0.3.5_all.ipk), [English TV package](portal-tv-0.3.5-english.ipk), or [complete source archive](portal-tv-webos-0.3.5-source.zip). Extract the source archive before running the build commands below.
+Download the [French TV package](org.portaltv.player_0.3.6_all.ipk), [English TV package](portal-tv-0.3.6-english.ipk), or [complete source archive](portal-tv-webos-0.3.6-source.zip). Extract the source archive before running the build commands below.
+
+## Changes in 0.3.6
+
+- Preserve the displayed channels when a catalogue request fails, with a Retry button.
+- Renew a Stalker session once on an explicit authentication failure and retry the failed request once. Malformed responses are not assumed to mean session expiry.
+- Regression tests cover malformed responses, successful recovery and repeated authentication failures without a retry loop, in both editions.
+
+This addresses the disappearing channel list reported in [issue #2](https://github.com/larecrue701/portal-tv-webos/issues/2). The initial playback interruption was not reproduced; provider or stream failures can still interrupt playback.
 
 ## English edition
 
@@ -57,7 +65,7 @@ With LG's CLI configured for your own device:
 
 ```sh
 # Replace MY_TV with your configured device name
-npx ares-install --device MY_TV dist/org.portaltv.player_0.3.5_all.ipk
+npx ares-install --device MY_TV dist/org.portaltv.player_0.3.6_all.ipk
 npx ares-launch --device MY_TV org.portaltv.player
 ```
 
@@ -103,7 +111,7 @@ npm run test:ui
 
 ## Rollback
 
-Keep the previous IPK before updating. To roll back, reinstall that IPK over the same app ID using your installation tool. Do not uninstall first. Version 0.3.5 adds separate local preference keys that older versions ignore; it does not migrate or erase existing sources. Uninstalling the application may delete its local data.
+Keep the previous IPK before updating. To roll back, reinstall that IPK over the same app ID using your installation tool. Do not uninstall first. Version 0.3.6 does not migrate or erase existing sources. Previous packages remain available: [French 0.3.5](org.portaltv.player_0.3.5_all.ipk) and [English 0.3.5](portal-tv-0.3.5-english.ipk). Uninstalling the application may delete its local data.
 
 ## License and credits
 
