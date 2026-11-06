@@ -2,9 +2,20 @@
 
 An independent TV player for **your own Stalker portal and M3U sources**, with French and English editions designed for the LG remote. No channels, subscription, portal credentials or playlists are included.
 
-**Version 0.3.6 — early release.** The previous version was tested on webOS 25 with Node.js 16.20.2; this update has passed simulated browser and service tests, but has not yet been verified on a real TV. Other TVs and provider implementations need testing. This is not an official LG, Infomir or StbEmu application.
+**Version 0.3.7 — early release.** The previous version was tested on webOS 25 with Node.js 16.20.2; this update has passed simulated browser and service tests, but has not yet been verified on a real TV. Other TVs and provider implementations need testing. This is not an official LG, Infomir or StbEmu application.
 
-Download the [French TV package](org.portaltv.player_0.3.6_all.ipk), [English TV package](portal-tv-0.3.6-english.ipk), or [complete source archive](portal-tv-webos-0.3.6-source.zip). Extract the source archive before running the build commands below.
+Download the [French TV package](org.portaltv.player_0.3.7_all.ipk), [English TV package](portal-tv-0.3.7-english.ipk), or [complete source archive](portal-tv-webos-0.3.7-source.zip). Extract the source archive before running the build commands below.
+
+## Support this project
+
+Portal TV is free and open source. If you would like to support development, you can [contribute via PayPal](https://www.paypal.com/qrcodes/p2pqrc/CCQVWWVAHNS72) or scan the QR code below. Donations are optional and do not unlock channels, subscriptions or extra features.
+
+<a href="https://www.paypal.com/qrcodes/p2pqrc/CCQVWWVAHNS72"><img src="support-paypal.png" width="260" alt="Scan to support Portal TV via PayPal (optional)"></a>
+
+## Changes in 0.3.7
+
+- Add a local PayPal support QR code to the source/home page in French and English. No payment requests or external resources load on the TV.
+- Retain the channel-list recovery fixes from 0.3.6.
 
 ## Changes in 0.3.6
 
@@ -65,7 +76,7 @@ With LG's CLI configured for your own device:
 
 ```sh
 # Replace MY_TV with your configured device name
-npx ares-install --device MY_TV dist/org.portaltv.player_0.3.6_all.ipk
+npx ares-install --device MY_TV dist/org.portaltv.player_0.3.7_all.ipk
 npx ares-launch --device MY_TV org.portaltv.player
 ```
 
