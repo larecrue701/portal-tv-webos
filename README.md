@@ -126,7 +126,7 @@ npm run test:ui
 
 ## Rollback
 
-Keep the previous IPK before updating. To roll back, reinstall that IPK over the same app ID using your installation tool. Do not uninstall first. Version 0.3.6 does not migrate or erase existing sources. Previous packages remain available: [French 0.3.5](org.portaltv.player_0.3.5_all.ipk) and [English 0.3.5](portal-tv-0.3.5-english.ipk). Uninstalling the application may delete its local data.
+Keep the previous IPK before updating. To roll back, reinstall that IPK over the same app ID using your installation tool. Do not uninstall first. Version 0.3.6 does not migrate or erase existing sources. Older versions remain available in the [Git history](https://github.com/larecrue701/portal-tv-webos/tree/2ecd845ce98f6f9752456b13f257ed60756ed31f). Only the latest version is listed on the main page. Uninstalling the application may delete its local data.
 
 ## License and credits
 
