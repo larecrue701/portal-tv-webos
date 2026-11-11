@@ -2,9 +2,9 @@
 
 An independent TV player for **your own Stalker portal and M3U sources**, with French and English editions designed for the LG remote. No channels, subscription, portal credentials or playlists are included.
 
-**Version 0.3.8 — early release.** The previous version was tested on webOS 25 with Node.js 16.20.2; this update has passed simulated browser and service tests, but has not yet been verified on a real TV. Other TVs and provider implementations need testing. This is not an official LG, Infomir or StbEmu application.
+**Version 0.3.10 — early release.** Live recovery tested on an LG webOS TV: playback resumes automatically after an unexpected stream end, but a 1–2 second interruption can remain. Seamless playback is not yet fixed. The English edition passes automated checks but needs on-TV validation. This is not an official LG, Infomir or StbEmu application.
 
-Download the [French TV package](org.portaltv.player_0.3.8_all.ipk), [English TV package](portal-tv-0.3.8-english.ipk), or [complete source archive](portal-tv-webos-0.3.8-source.zip). Extract the source archive before running the build commands below.
+Download the [French TV package](org.portaltv.player_0.3.10_all.ipk), [English TV package](portal-tv-0.3.10-english.ipk), or [complete source archive](portal-tv-webos-0.3.10-source.zip). Extract the source archive before running the build commands below.
 
 ## Support this project
 
@@ -12,9 +12,14 @@ Portal TV is free and open source. If you would like to support development, you
 
 <a href="https://paypal.me/PortalTvLg"><img src="support-paypal.png" width="260" alt="Scan to support Portal TV via PayPal (optional)"></a>
 
-## Changes in 0.3.8
+## Changes in 0.3.10
 
-- Correct the PayPal support destination to https://paypal.me/PortalTvLg and replace the QR code.
+- Retry a failed Stalker catalogue/playback request once after reconnecting on authentication, malformed-response or missing-stream errors. This is a recovery attempt, not proof of token expiry.
+- Recover immediately when a live stream unexpectedly ends; retain a 25-second watchdog for stalled playback.
+- Preserve intentional pauses, VOD end behavior, the selected channel and full-screen presentation during recovery.
+- Cancel stale recovery after changing source/channel and avoid overlapping recovery requests.
+- Local TV testing confirms automatic recovery, with a remaining 1–2 second interruption. See [issue #3](https://github.com/larecrue701/portal-tv-webos/issues/3).
+- No usage tracking, private playlists or temporary TV diagnostic logger are included.
 
 ## Support display
 
@@ -38,7 +43,7 @@ The English edition passed browser navigation and simulated playback tests; it h
 ```sh
 npm ci
 python3 build-english.py
-node dist/english/test-ui.mjs
+node test-ui.mjs
 npx ares-package dist/english/app dist/english/service --outdir dist/english
 ```
 
@@ -80,7 +85,7 @@ With LG's CLI configured for your own device:
 
 ```sh
 # Replace MY_TV with your configured device name
-npx ares-install --device MY_TV dist/org.portaltv.player_0.3.8_all.ipk
+npx ares-install --device MY_TV dist/org.portaltv.player_0.3.10_all.ipk
 npx ares-launch --device MY_TV org.portaltv.player
 ```
 
